@@ -32,33 +32,42 @@ This guide assumes your are using Linux as your development platform. Shell comm
 
 
 1.) Create a folder where you are going to have your Contiki and Contikiprojects sourcetrees
+
   $ mkdir src
 
 
 2.) Go to your new sourcetree folder
+
   $ cd src
 
 3.) Get sources from Contiki OS git repo:
+
   $ git clone https://github.com/contiki-os/contiki.git
 
 4.) Get sources from Contikiprojects SVN repo:
+
   $ git clone https://github.com/lodger-c64/Contiki-BBS.git
 
 5.) Go to the contikiprojects folder containing the Contiki BBS sources
+
   $ cd contiki-bbs/platform/c64/
 
 6.) Build the binaries
+
   $ make
 
 7.) Seperately build the Contiki BBS setup program
+
   $ cl65 -t c64 -o bbs-setup bbs-setup.c bbs-setupfuncs.c bbs-file.c
 
 Voila! You have now built your own Contiki BBS binaries. Now, how do we get these on a D64 disk image?
 
 8.) Still in the source directory, create a D64 disk image (make sure you have set your PATH to point to the c1541 command-line program)
+
   $ c1541 -format "contikibbs,25" ctkbbs.d64
 
 9.) Write the neccessary files to your new D64 disk image
+
   $ c1541 ctkbbs.d64 -write contiki-bbs.c64 contiki-bbs 
   $ c1541 ctkbbs.d64 -write bbs-setup
   $ c1541 ctkbbs.d64 -write lan91c96.eth
@@ -72,9 +81,11 @@ Congratulations, you're done! Now you have a working D64 disk image containing C
 Okay, so this is how to build and prepare Contiki BBS for use on a Commodore 64. Now let's go through the setup process of Contiki BBS itself. So startup your VICE emulator and attach your ctkbbs.d64 disk image to drive 8. You are now at the Commodore 64 BASIC prompt.
 
 10.) Load the Contiki BBS setup program
+
      LOAD "BBS-SETUP",8,1
 
 11.) Start it ...
+
      RUN
    
 
