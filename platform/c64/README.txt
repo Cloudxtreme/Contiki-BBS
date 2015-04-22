@@ -39,7 +39,7 @@ This guide assumes your are using Linux as your development platform. Shell comm
   $ cd src
 
 3.) Get sources from Contiki OS git repo:
-  $ git clone git://contiki.git.sourceforge.net/gitroot/contiki/contiki
+  $ git clone https://github.com/contiki-os/contiki.git
 
 4.) Get sources from Contikiprojects SVN repo:
   $ git clone https://github.com/lodger-c64/Contiki-BBS.git
