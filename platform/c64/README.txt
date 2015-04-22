@@ -44,10 +44,10 @@ This guide assumes your are using Linux as your development platform. Shell comm
   $ git clone git://contiki.git.sourceforge.net/gitroot/contiki/contiki
 
 4.) Get sources from Contikiprojects SVN repo:
-  $ svn co https://contikiprojects.svn.sourceforge.net/svnroot/contikiprojects contikiprojects
+  $ git clone https://github.com/lodger-c64/Contiki-BBS.git
 
 5.) Go to the contikiprojects folder containing the Contiki BBS sources
-  $ cd contikiprojects/ufud.org/contiki-bbs/platform/c64/
+  $ cd contiki-bbs/platform/c64/
 
 6.) Build the binaries
   $ make
