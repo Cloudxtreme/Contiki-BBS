@@ -48,7 +48,7 @@ This guide assumes your are using Linux as your development platform. Shell comm
 
   $ git clone https://github.com/lodger-c64/Contiki-BBS.git
 
-5.) Go to the contikiprojects folder containing the Contiki BBS sources
+5.) Go to the directory containing the Contiki BBS sources
 
   $ cd contiki-bbs/platform/c64/
 
