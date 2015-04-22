@@ -1,0 +1,11 @@
++--------------------------------------+
+i                                      i
+i        ** m a i n   m e n u **       i
+i                                      i
+i     'BOARD' ........ SELECT BOARD    i
+i    'BLIST' ........ LIST BOARDS      i
+i   'POST' ........ WRITE NEW MSG.     i
+i  'HELP' ........ DISPLAY HELP        i
+i 'QUIT' ........ EXIT BBS (LOGOUT)    i
+i                                      i
++--------------------------------------+
