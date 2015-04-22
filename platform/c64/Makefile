@@ -1,5 +1,5 @@
 ifndef CONTIKI
-CONTIKI = ../../../contiki
+CONTIKI = ../../../contiki # <-- change this to the location of your Contiki OS source distribution !!
 endif
 
 CONTIKI_PROJECT = contiki-bbs
