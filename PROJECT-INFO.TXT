@@ -1,7 +1,7 @@
 Name: contiki-bbs
 Contact: Niels Haedecke <n.haedecke@gmail.com>
 URL: http://commfud.ufud.org/
-License: GPL http://www.opensource.org/licenses/gpl-license.php
+License: GPL v2
 Screenshot: 
 Contiki version: 2.6
 Intended platforms: C64
