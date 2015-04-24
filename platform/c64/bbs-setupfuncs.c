@@ -2,7 +2,7 @@
  * \file
  *         bbs-setupfuncs.c - setup functions for the Contiki BBS setup program
  * \author
- *         (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #include "bbs-setup.h"
@@ -249,9 +249,52 @@ int boardSetup(unsigned short drive) {
    return 0;
 }
 
-int userSetup(unsigned short drive) {
-   int user_count=0;
+int enterUserData(BBS_USER_REC *rec, unsigned short *user_count) {
    char input;
+
+             do {
+                printf("\nUser #  : %03d",  *user_count);
+                rec->user_no = *user_count;
+
+                printf("\nUsername: ");
+                gets(rec->user_name);
+
+                printf("Password: ");
+                gets(rec->user_pwd);
+
+                printf("\nUser data correct (y/n)? ");
+                input=getchar();
+          } while (input != 'y');
+   return 0;
+}
+
+int readUserData(BBS_USER_REC *rec, ST_FILE *file, unsigned short *count) {
+   strcpy(file->szFileName, "user.dat");
+   ssReadRELFile(file, rec, sizeof(BBS_USER_REC), *count);
+   return 0;
+}
+
+int readUserIndex(unsigned short *count, ST_FILE *file) {
+  strcpy(file->szFileName, "user.idx");
+  ssReadRELFile(file, count, sizeof(unsigned short), 1);
+  return 0;
+}
+
+int writeUserData(BBS_USER_REC *rec, ST_FILE *file, unsigned short *count) {
+   strcpy(file->szFileName, "user.dat");
+   ssWriteRELFile(file, rec, sizeof(BBS_USER_REC), *count);
+   return 0;
+}
+
+int writeUserIndex(unsigned short *count, ST_FILE *file) {
+  strcpy(file->szFileName, "user.idx");
+  ssWriteRELFile(file, count, sizeof(unsigned short), 1);
+  return 0;
+}
+
+int userSetup(unsigned short drive) {
+   unsigned short count=0,user_count=0;
+   char input,buff[20];
 
    BBS_USER_REC mybbsuser;
    ST_FILE file;
@@ -265,36 +308,65 @@ int userSetup(unsigned short drive) {
    if(siFileExists(&file) == 62 /*|| user_count == 0*/) {
      user_count = 1;
      memset(&mybbsuser, 0x20, sizeof(BBS_USER_REC));
+
+     printf("\n* Initializing user databases...\n");
      strcpy(file.szFileName, "user.dat");
-     printf("\n* Initializing user database...\n");
      ssInitRELFile(&file, &mybbsuser, sizeof(BBS_USER_REC), BBS_MAX_USERS);
-   } else {
      strcpy(file.szFileName, "user.idx");
-     ssReadRELFile(&file, &user_count, sizeof(int), 1);
-     user_count += 1;
+     ssInitRELFile(&file, &user_count, sizeof(unsigned short), 1);
+     writeUserIndex(&user_count, &file);
    }
 
-   do {
-      printf("\nUser #  : %03d",  user_count);
-      mybbsuser.user_no = user_count;
-      
-      printf("\nUsername: ");
-      gets(mybbsuser.user_name);
+   printf("\n(A)dd, (E)dit or (L)list users? ");
+   input=getchar();
 
-      printf("\nPassword: ");
-      gets(mybbsuser.user_pwd);
+   switch (input) {
 
-      printf("\nUser data correct (y/n)? ");
-      input=getchar();
+      case 'a':
+      case 'A': {
+          readUserIndex(&user_count, &file);
+          enterUserData(&mybbsuser, &user_count);
+          writeUserData(&mybbsuser, &file, &user_count);
+          user_count += 1;
+          writeUserIndex(&user_count, &file);
+      }
+      break;
 
-   } while (input != 'y');
+      case 'e':
+      case 'E': {
+             printf("\n\nEnter user #: ");
+             gets(buff);
+             sscanf(buff, "%d", &count);
+             readUserData(&mybbsuser, &file, &count);
+             scrollScreen();
+             printf("\nUser #  : %03d", count);
+             printf("\nUsername: %s", mybbsuser.user_name);
+             printf("\nPassword: %s\n", mybbsuser.user_pwd);
+             enterUserData(&mybbsuser, &count);
+             writeUserData(&mybbsuser, &file, &count);
+      }
+      break;
 
-   strcpy(file.szFileName, "user.dat");
-   ssWriteRELFile(&file, &mybbsuser, sizeof(BBS_USER_REC), user_count);
+      case 'l':
+      case 'L': {
+             count = 1;
+             scrollScreen();
+             printf("\n\nID# | Username");
+             printf("\n----+----------------------------------");
 
-   strcpy(file.szFileName, "user.idx");
-   file.ucDeviceNo = drive;
-   ssWriteRELFile(&file, &user_count, sizeof(int), 1);
+             readUserIndex(&user_count, &file);
 
+             do {
+                readUserData(&mybbsuser, &file, &count);
+                printf("\n%03d | %s",  count, mybbsuser.user_name);
+                count++;
+             } while (count < user_count);
+
+             printf("\n\nPress key"); 
+             input=getchar();
+      }   
+      break;
+
+   }
    return 0;
 }

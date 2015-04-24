@@ -7,7 +7,8 @@
 
 #include "bbs-setup.h"
 
-int main(int argc, char *argv[]) {
+/* int main(int argc, char *argv[]) { */
+int main(void) {
 
    unsigned short drive=8;
    char input;

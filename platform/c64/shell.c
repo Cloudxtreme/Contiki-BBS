@@ -149,7 +149,7 @@ int bbs_get_user(char *data)
 
   strcpy(file.szFileName, "user.idx");
   file.ucDeviceNo = bbs_status.board_drive;
-  ssReadRELFile(&file, &user_count, sizeof(int), 1);
+  ssReadRELFile(&file, &user_count, sizeof(unsigned short), 1);
 
   strcpy(file.szFileName, "user.dat");
   file.ucDeviceNo = bbs_status.board_drive;

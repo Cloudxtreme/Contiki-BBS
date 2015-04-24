@@ -31,5 +31,5 @@ int networkSetup(unsigned short drive);
 int baseSetup(void);
 int boardSetup(unsigned short drive);
 int userSetup(unsigned short drive);
-
+int enterUserData(BBS_USER_REC *rec, unsigned short *user_count);
 #endif /* __BBS_SETUP_H__ */

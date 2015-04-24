@@ -2,13 +2,13 @@
  * \file
  *         bbsefs.h - Contiki BBS functions and types - header file
  * \author
- *         (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #ifndef __BBSDEFS_H_
 #define __BBSDEFS_H_
 
-#define BBS_COPYRIGHT_STRING "\n\r            Contiki BBS 0.2.6 \n\r     (c) 2009-2013 by N. Haedecke\n\r           based on Contiki OS,\n\r     (c) 2003-2013 by Adam Dunkels\n\r"
+#define BBS_COPYRIGHT_STRING "\n\r            Contiki BBS 0.2.7 \n\r     (c) 2009-2015 by N. Haedecke\n\r           based on Contiki OS,\n\r     (c) 2003-2013 by Adam Dunkels\n\r"
 
 #define BBS_LOCKMODE_OFF        0
 #define BBS_LOCKMODE_ON         1
@@ -18,7 +18,7 @@
 
 #define BBS_MAX_BOARDS         20
 #define BBS_MAX_MSGLINES        6
-#define BBS_MAX_USERS         500
+#define BBS_MAX_USERS          10 
 
 #define BBS_BANNER_BUFFER    1024
 #define BBS_BANNER_LOGIN     "login.txt"
@@ -35,7 +35,7 @@
 #define BBS_STRING_BOARDINFO "-id- -------board------- -msgs-"
 #define BBS_STRING_LINEMAX "  enter message (max. 40 chars per line)"
 #define BBS_STRING_EDITHDR "---------+---------+---------+---------+" 
-#define BBS_STRING_VERSION "0.2.6"
+#define BBS_STRING_VERSION "0.2.7"
 
 typedef struct {
   unsigned short board_no;  
