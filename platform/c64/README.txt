@@ -1,4 +1,4 @@
-Contiki BBS 2.6.x quick startup guide
+Contiki BBS 2.7.x quick startup guide
 =====================================
 
 
@@ -94,7 +94,7 @@ Contiki BBS configuration
 
 The main menu will appear
    
-     *** Contiki BBS 0.2.5 setup ***
+     *** Contiki BBS 0.2.7 setup ***
 
      1...BBS base setup
      2...BBS board setup
@@ -207,13 +207,13 @@ i         w e l c o m e   t o :        i
 i                                      i
 i           >> contiki bbs <<          i
 i                                      i
-i         v 0.2.6 (c) 2009-2013        i
+i         v 0.2.7 (c) 2009-2013        i
 i                  by                  i
 i              n. haedecke             i
 i                                      i
 +--------------------------------------+
 
-Contiki BBS 0.2.6
+Contiki BBS 0.2.7
 
 login: _
 
