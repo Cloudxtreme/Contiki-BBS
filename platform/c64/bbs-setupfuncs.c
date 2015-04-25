@@ -213,14 +213,14 @@ int boardSetup(unsigned short drive) {
 
          printf("\n\nBoard #%d", count);
 
-         printf("\nEnter board name: ");
+         printf("\nBoard name: ");
          gets(board.board_name);
 
-         printf("\nMaximum messages for board: ");
+         printf("\nMax. msgs. : ");
          gets(buff);
          sscanf(buff, "%d", &board.board_max);
 
-         printf("\nAccess level for board: ");
+         printf("\nAccess lvl.: ");
          gets(buff);
          sscanf(buff, "%d", &board.access_req);
 
@@ -267,7 +267,8 @@ int enterUserData(BBS_USER_REC *rec, unsigned short *user_count) {
                 printf("Password: ");
                 gets(rec->user_pwd);
 
-                printf("\nAccess level: ");
+                printf("\nAccess lvl.: ");
+                gets(buff);
                 sscanf(buff, "%d", rec->access_req);
 
                 printf("\nUser data correct (y/n)? ");
@@ -348,10 +349,10 @@ int userSetup(unsigned short drive) {
              sscanf(buff, "%d", &count);
              readUserData(&mybbsuser, &file, &count);
              scrollScreen();
-             printf("\nUser #  : %03d", count);
-             printf("\nUsername: %s", mybbsuser.user_name);
-             printf("\nPassword: %s\n", mybbsuser.user_pwd);
-             printf("\nAccess  : %03d\n", mybbsuser.access_req);
+             printf("\nUser #     : %03d", count);
+             printf("\nUsername   : %s", mybbsuser.user_name);
+             printf("\nPassword   : %s\n", mybbsuser.user_pwd);
+             printf("\nAccess lvl.: %03d\n", mybbsuser.access_req);
              enterUserData(&mybbsuser, &count);
              writeUserData(&mybbsuser, &file, &count);
       }
