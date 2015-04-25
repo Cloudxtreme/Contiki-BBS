@@ -26,7 +26,7 @@ static struct etimer bbs_session_timer;
 static unsigned long time_offset;
  
 BBS_STATUS_REC bbs_status;
-static BBS_USER_REC bbs_user;
+BBS_USER_REC bbs_user;
 unsigned short bbs_lock=0;
 
 PROCESS(shell_process, "Shell");

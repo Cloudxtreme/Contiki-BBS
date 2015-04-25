@@ -215,9 +215,13 @@ int boardSetup(unsigned short drive) {
          printf("\nEnter board name: ");
          gets(board.board_name);
 
-         printf("\nMaximum messages for board : ");
+         printf("\nMaximum messages for board: ");
          gets(buff);
          sscanf(buff, "%d", &board.board_max);
+
+         printf("\nAccess level for board: ");
+         gets(buff);
+         sscanf(buff, "%d", &board.access_req);
 
          printf("\nBoard data correct (y/n)? ");
          input=getchar();
@@ -262,8 +266,12 @@ int enterUserData(BBS_USER_REC *rec, unsigned short *user_count) {
                 printf("Password: ");
                 gets(rec->user_pwd);
 
+                printf("\nAccess level: ");
+                gets(rec->access_req);
+
                 printf("\nUser data correct (y/n)? ");
                 input=getchar();
+
           } while (input != 'y');
    return 0;
 }
@@ -342,6 +350,7 @@ int userSetup(unsigned short drive) {
              printf("\nUser #  : %03d", count);
              printf("\nUsername: %s", mybbsuser.user_name);
              printf("\nPassword: %s\n", mybbsuser.user_pwd);
+             printf("\nAccess  : %s\n", mybbsuser.access_req);
              enterUserData(&mybbsuser, &count);
              writeUserData(&mybbsuser, &file, &count);
       }
@@ -351,14 +360,14 @@ int userSetup(unsigned short drive) {
       case 'L': {
              count = 1;
              scrollScreen();
-             printf("\n\nID# | Username");
-             printf("\n----+----------------------------------");
+             printf("\n\nID# |Acc. | Username");
+             printf("\n----+-----+----------------------------");
 
              readUserIndex(&user_count, &file);
 
              do {
                 readUserData(&mybbsuser, &file, &count);
-                printf("\n%03d | %s",  count, mybbsuser.user_name);
+                printf("\n%03d | %03d | %s",  count, mybbsuser.access_req, mybbsuser.user_name);
                 count++;
              } while (count < user_count);
 

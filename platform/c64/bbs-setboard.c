@@ -17,9 +17,8 @@
 #include <string.h>
 
 extern BBS_STATUS_REC bbs_status;
+extern BBS_USER_REC bbs_user;
 
-/*PROCESS(bbs_setboard_process, "setboard");*/
-/*SHELL_COMMAND(bbs_setboard_command, "setboard", "setboard: set active board", &bbs_setboard_process);*/
 PROCESS(bbs_setboard_process, "board");
 SHELL_COMMAND(bbs_setboard_command, "board", "board  : select active board", &bbs_setboard_process);
 
@@ -47,7 +46,7 @@ PROCESS_THREAD(bbs_setboard_process, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(ev == shell_event_input);
     input = data;
 
-    if(atoi(input->data1) < 1 || atoi(input->data1) > board.max_boards) {
+    if(atoi(input->data1) < 1 || atoi(input->data1) > board.max_boards || bbs_user.access_req < board.access_req) {
       shell_prompt("");
       PROCESS_EXIT();
     } else {
