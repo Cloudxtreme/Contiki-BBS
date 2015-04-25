@@ -135,7 +135,7 @@ int networkSetup(unsigned short drive)
 
 int baseSetup(void) {
   char input;
-  char buff[20];
+  char buff[4];
   ST_FILE file;
   BBS_STATUS_REC cfg;
 
@@ -172,6 +172,7 @@ int baseSetup(void) {
 
       printf("\nBase data correct (y/n)? ");
       input=getchar();
+
    } while (input != 'y');
 
    /* write BBS base configuration */
@@ -254,7 +255,7 @@ int boardSetup(unsigned short drive) {
 }
 
 int enterUserData(BBS_USER_REC *rec, unsigned short *user_count) {
-   char input;
+   char input, buff[4];
 
              do {
                 printf("\nUser #  : %03d",  *user_count);
@@ -267,7 +268,7 @@ int enterUserData(BBS_USER_REC *rec, unsigned short *user_count) {
                 gets(rec->user_pwd);
 
                 printf("\nAccess level: ");
-                gets(rec->access_req);
+                sscanf(buff, "%d", rec->access_req);
 
                 printf("\nUser data correct (y/n)? ");
                 input=getchar();
@@ -350,7 +351,7 @@ int userSetup(unsigned short drive) {
              printf("\nUser #  : %03d", count);
              printf("\nUsername: %s", mybbsuser.user_name);
              printf("\nPassword: %s\n", mybbsuser.user_pwd);
-             printf("\nAccess  : %s\n", mybbsuser.access_req);
+             printf("\nAccess  : %03d\n", mybbsuser.access_req);
              enterUserData(&mybbsuser, &count);
              writeUserData(&mybbsuser, &file, &count);
       }

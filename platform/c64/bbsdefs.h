@@ -50,7 +50,7 @@ typedef struct {
   unsigned short user_no;  
   char  user_name[15];
   char  user_pwd[15];
-  char  access_req;
+  unsigned short  access_req;
 } BBS_USER_REC;
 
 typedef struct {
