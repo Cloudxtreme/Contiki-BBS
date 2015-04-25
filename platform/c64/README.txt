@@ -130,21 +130,24 @@ Boards are an early predecessor of today's internet forums. It's the place peopl
      How many boards? 3
      
      Board #1
-     Enter board name: Lobby
-     Maximum messages for board: 100
+     Board name : Lobby
+     Max. msgs. : 100
+     Access lvl.: 10
 
      Board data correct (y/n)? y
 
      Board #2
-     Enter board name: Continki BBS
-     Maximum messages for board: 100
-
+     Board name: Continki BBS
+     Max. msgs.: 100
+     Access lvl.: 10
+     
      Board data correct (y/n)? y
 
      Board #3
-     Enter board name: Help / Bugs
-     Maximum messages for board: 100
-
+     Board name: Help / Bugs
+     Max. msgs.: 100
+     Access lvl.: 10
+     
      Board data correct (y/n)? y
 
 
@@ -172,12 +175,15 @@ NOTE: do not prefix your memory address with the '$' sign. E.g. if your ethernet
 The user editor is currently very limited. The only thing it does is add users to its database, nothing else. At the moment Contiki BBS does not care about usernames, it does not even distinguish between different users. This will change in future versions of the program. As for now a single user will be all we need. In the example below we just provide a simple 'guest' user with the password 'guest', so we can log in into our new BBS.
 
     * BBS user editor
+    
+    (A)add, (E)dit or (L)ist users? A
 
-    * Initializing user database ...
+    * Initializing user databases ...
 
     User #  : 001
     Username: guest
     Password: guest
+    Access lvl.: 10
   
     User data correct (y/n)? y
 
