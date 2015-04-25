@@ -52,6 +52,7 @@ PROCESS_THREAD(bbs_read_process, ev, data)
        sprintf(bbs_logbuf[0], "* reading: board #%d, msg. #%d", bbs_status.bbs_board_id, bbs_status.bbs_msg_id);
        shell_output_str(&bbs_read_command, bbs_logbuf[0], "");
        shell_output_str(&bbs_read_command, BBS_STRING_EDITHDR, "");
+       memset(bbs_logbuf, 0, sizeof(bbs_logbuf));
 
        sprintf(file.szFileName, "board%d.msg", bbs_status.bbs_board_id);
        ssReadRELFile(&file, bbs_logbuf, sizeof(bbs_logbuf), bbs_status.bbs_msg_id);
