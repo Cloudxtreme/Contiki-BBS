@@ -137,15 +137,15 @@ Boards are an early predecessor of today's internet forums. It's the place peopl
      Board data correct (y/n)? y
 
      Board #2
-     Board name: Continki BBS
-     Max. msgs.: 100
+     Board name : Continki BBS
+     Max. msgs. : 100
      Access lvl.: 10
      
      Board data correct (y/n)? y
 
      Board #3
-     Board name: Help / Bugs
-     Max. msgs.: 100
+     Board name : Help / Bugs
+     Max. msgs. : 100
      Access lvl.: 10
      
      Board data correct (y/n)? y
