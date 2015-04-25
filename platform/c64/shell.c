@@ -774,6 +774,7 @@ shell_quit(void)
   process_exit(&timer_process);
   process_exit(&shell_process);
   process_exit(&shell_server_process);
+  shell_exit();
 }
 /*---------------------------------------------------------------------------*/
 

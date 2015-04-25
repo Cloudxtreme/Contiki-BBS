@@ -42,7 +42,7 @@ PROCESS_THREAD(bbs_blist_process, ev, data)
         ssReadRELFile(&file, &board, sizeof(BBS_BOARD_REC), bbs_board_id);
 
         /*sprintf(szBuff, " %02d  %-20s  %03d", board.board_no, board.board_name, board.board_ptr);*/
-        sprintf(szBuff, " %2d  %-20s  %3d", board.board_no, board.board_name, board.board_ptr);
+        sprintf(szBuff, " %2d  %-20s %3d  %3d", board.board_no, board.board_name, board.access_req, board.board_ptr);
         shell_output_str(&bbs_blist_command, szBuff, "");
 
         bbs_board_id++;
