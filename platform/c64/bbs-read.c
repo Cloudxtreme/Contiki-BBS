@@ -36,7 +36,7 @@ PROCESS_THREAD(bbs_read_process, ev, data)
 
   PROCESS_BEGIN();
 
-  sprintf(bbs_logbuf[0], "{%s, %d msgs.} msg# (0=quit)? ", board.board_name, board.board_ptr);
+  sprintf(bbs_logbuf[0], "(%s, %d msgs.) msg# (0=quit)? ", board.board_name, board.board_ptr);
   shell_prompt(bbs_logbuf[0]); 
 
   while(1) {

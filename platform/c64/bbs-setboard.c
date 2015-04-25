@@ -38,6 +38,7 @@ PROCESS_THREAD(bbs_setboard_process, ev, data)
   file.ucDeviceNo=8;
   ssReadRELFile(&file, &board, sizeof(BBS_BOARD_REC), bbs_status.bbs_board_id);
 
+  memset(szBuff, 0, sizeof(szBuff));
   sprintf(szBuff, "(%s (%d)) acl: %d. Choose board # (1-%d, 0=quit)? ", board.board_name, board.board_no, board.access_req, board.max_boards);
   shell_prompt(szBuff);
 

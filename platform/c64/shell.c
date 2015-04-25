@@ -179,17 +179,17 @@ PROCESS_THREAD(timer_process, ev, data)
 
      if (ev == PROCESS_EVENT_TIMER) {
 
-        if(bbs_lock==1) {
+        if (bbs_lock==1) {
           log_message("[bbs] ", "*timeout*");
         }
 
         /* set BBS parameters */
+        bbs_lock=0;        
         bbs_status.bbs_status=0;
         bbs_status.bbs_board_id=1;
         bbs_status.bbs_msg_id=1;
         bbs_timer_set();
-        bbs_lock=0;        
-        shell_exit();
+        shell_quit();
      }
   }
 
@@ -774,7 +774,6 @@ shell_quit(void)
   process_exit(&timer_process);
   process_exit(&shell_process);
   process_exit(&shell_server_process);
-  shell_exit();
 }
 /*---------------------------------------------------------------------------*/
 
