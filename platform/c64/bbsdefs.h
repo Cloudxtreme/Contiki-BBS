@@ -32,7 +32,7 @@
 #define BBS_CFG_FILE "bbs.cfg"
 #define BBS_BOARDCFG_FILE "board.cfg"
 
-#define BBS_STRING_BOARDINFO "-id- -------board------- -ac- -msgs-"
+#define BBS_STRING_BOARDINFO "-id- -------board------- -acl- -msgs-"
 #define BBS_STRING_LINEMAX "  enter message (max. 40 chars per line)"
 #define BBS_STRING_EDITHDR "---------+---------+---------+---------+" 
 #define BBS_STRING_VERSION "0.2.7alpha01"

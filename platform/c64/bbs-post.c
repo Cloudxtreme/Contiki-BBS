@@ -30,7 +30,6 @@ PROCESS_THREAD(bbs_post_process, ev, data)
   ST_FILE file;
   BBS_BOARD_REC board;
 
-
   /* read board data */
   if (disk_access) {
      strcpy(file.szFileName, BBS_BOARDCFG_FILE);
