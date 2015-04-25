@@ -73,27 +73,27 @@ int networkSetup(unsigned short drive)
       gets(tmp);
       nibbleIP(tmp, mycnf.srvip);
 
-      printf("\nNetmask             : ");
+      printf("Netmask             : ");
       gets(tmp);
       nibbleIP(tmp, mycnf.netmask);
 
-      printf("\nGateway IP          : "); 
+      printf("Gateway IP          : "); 
       gets(tmp);
       nibbleIP(tmp, mycnf.gateway);
 
-      printf("\nDNS IP              : ");
+      printf("DNS IP              : ");
       gets(tmp);
       nibbleIP(tmp, mycnf.nameserv);
 
-      printf("\nMem addr. ($de08)   : ");
+      printf("Mem addr. ($de08)   : ");
       gets(tmp);
       sscanf(tmp, "%x", &mycnf.mem);
 
-      printf("\nDriver (cs8900a.eth): ");
+      printf("Driver (cs8900a.eth): ");
       gets(tmp);
       strcpy(mycnf.driver, tmp);
 
-      printf("\nWrite to drive # (8): ");
+      printf("Write to drive # (8): ");
       gets(tmp);
       sscanf(tmp, "%d", &drive);
 
@@ -155,18 +155,18 @@ int baseSetup(void) {
       printf("\nEnter sysop name: ");
       gets(cfg.bbs_sysop);*/
 
-      printf("\nEnter BBS prompt: ");
+      printf("Enter BBS prompt: ");
       gets(cfg.bbs_prompt);
 
       if (strlen(cfg.bbs_prompt) < 1) {
          strcpy(cfg.bbs_prompt, "Contiki BBS> ");
       }
 
-      printf("\nLogin timeout (seconds): ");
+      printf("Login timeout (seconds): ");
       gets(buff);
       sscanf(buff, "%d", &cfg.bbs_timeout_login);
 
-      printf("\nSession timeout (seconds): ");
+      printf("Session timeout (seconds): ");
       gets(buff);
       sscanf(buff, "%d", &cfg.bbs_timeout_session);
 
@@ -216,11 +216,11 @@ int boardSetup(unsigned short drive) {
          printf("\nBoard name: ");
          gets(board.board_name);
 
-         printf("\nMax. msgs. : ");
+         printf("Max. msgs. : ");
          gets(buff);
          sscanf(buff, "%d", &board.board_max);
 
-         printf("\nAccess lvl.: ");
+         printf("Access lvl.: ");
          gets(buff);
          sscanf(buff, "%u", &board.access_req);
 
