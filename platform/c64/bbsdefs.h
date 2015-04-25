@@ -18,7 +18,7 @@
 
 #define BBS_MAX_BOARDS         20
 #define BBS_MAX_MSGLINES        6
-#define BBS_MAX_USERS         500 
+#define BBS_MAX_USERS           5 
 
 #define BBS_BANNER_BUFFER    1024
 #define BBS_BANNER_LOGIN     "login.txt"

@@ -222,7 +222,7 @@ int boardSetup(unsigned short drive) {
 
          printf("\nAccess lvl.: ");
          gets(buff);
-         sscanf(buff, "%d", &board.access_req);
+         sscanf(buff, "%u", &board.access_req);
 
          printf("\nBoard data correct (y/n)? ");
          input=getchar();
@@ -256,6 +256,7 @@ int boardSetup(unsigned short drive) {
 
 int enterUserData(BBS_USER_REC *rec, unsigned short *user_count) {
    char input, buff[4];
+   unsigned short num;
 
              do {
                 printf("\nUser #  : %03d",  *user_count);
@@ -267,9 +268,10 @@ int enterUserData(BBS_USER_REC *rec, unsigned short *user_count) {
                 printf("Password: ");
                 gets(rec->user_pwd);
 
-                printf("\nAccess lvl.: ");
+                printf("Access lvl.: ");
                 gets(buff);
-                sscanf(buff, "%d", rec->access_req);
+                sscanf(buff, "%u", &num);
+                rec->access_req=num;
 
                 printf("\nUser data correct (y/n)? ");
                 input=getchar();
