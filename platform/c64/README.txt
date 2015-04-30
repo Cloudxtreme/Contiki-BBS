@@ -31,7 +31,7 @@ This guide assumes your are using Linux as your development platform. Shell comm
   $ ls
 
 
-1.) Create a folder where you are going to have your Contiki and Contikiprojects sourcetrees
+1.) Create a folder where you are going to keep your Contiki and Contiki BBS sources.
 
   $ mkdir src
 
