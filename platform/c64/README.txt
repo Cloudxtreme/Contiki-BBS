@@ -35,7 +35,6 @@ This guide assumes your are using Linux as your development platform. Shell comm
 
   $ mkdir src
 
-
 2.) Go to your new sourcetree folder
 
   $ cd src
