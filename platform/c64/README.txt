@@ -26,7 +26,7 @@ Alternatively, a Commodore 64 with a Commodore 1541 disk drive and any compatibl
 
 How to build Contiki BBS from scratch
 ------------------------------------
-This guide assumes your are using Linux as your development platform. Shell commands needed to be entered will be displayed with the well-known UNIX command-line prompt at the beginning. E.g. the following will show the 'ls' command being issued:
+This guide assumes your are using Linux as your development platform. Shell commands needed to be entered will be displayed with the well known UNIX commandline prompt at the beginning. E.g. the following example will show the 'ls' command being issued:
 
   $ ls
 
