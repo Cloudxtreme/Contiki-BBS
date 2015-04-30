@@ -21,7 +21,7 @@ The following tools are required for a successful compile and installation of Co
 
 NOTE: On Linux you may have to use libnet0-1.0.2a from its original source code archives in order to get ethernet emulation working with VICE, since the libnet packages provided by recent Linux distros (e.g. libnet1) won't work (VICE will not be able to use the 'write_link_layer' function).
 
-Alternatively, a Commodore 64 with a Commodore 1541 disk drive and any compatible ethernet cartridge (e.g. TFE, RRnet, 64NIC+) will work as well. You just have to transfer the D64 image to a 5.25" disk. Google for 'opencbm' for information on how to accomplish this.
+Alternatively, a Commodore 64 with a Commodore 1541 disk drive and any compatible ethernet cartridge (e.g. TFE, RRnet, 64NIC+) will work as well. You just have to transfer the D64 image to a 5.25" disk. Search the web for 'opencbm' for information on how to accomplish this.
 
 
 How to build Contiki BBS from scratch
