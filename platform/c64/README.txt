@@ -43,7 +43,7 @@ This guide assumes your are using Linux as your development platform. Shell comm
 
   $ git clone https://github.com/contiki-os/contiki.git
 
-4.) Get sources from Contikiprojects SVN repo:
+4.) Get Contiki BBS sources:
 
   $ git clone https://github.com/lodger-c64/Contiki-BBS.git
 
