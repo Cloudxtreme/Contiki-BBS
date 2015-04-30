@@ -13,6 +13,8 @@ Prerequisites:
 --------------
 The following tools are required for a successful compile and installation of Contiki BBS:
 
+* GNU Make
+
 * Installation of the cc65 C compiler
 
 * Git revision control tool
