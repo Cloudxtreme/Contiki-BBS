@@ -63,7 +63,7 @@ Voila! You have now built your own Contiki BBS binaries. Now, how do we get thes
 
 8.) Still in the source directory, create a D64 disk image (make sure you have set your PATH to point to the c1541 commandline program)
 
-  $ c1541 -format "contikibbs,25" ctkbbs.d64
+  $ c1541 -format "contikibbs,27" ctkbbs.d64
 
 9.) Write the neccessary files to your new D64 disk image. Depending on what ethernet hardware you are using, you may skip writing *.eth drivers to the image that you don't need in order to save disk space.
 
