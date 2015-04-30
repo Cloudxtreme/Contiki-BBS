@@ -15,7 +15,7 @@ The following tools are required for a successful compile and installation of Co
 
 * GNU Make
 
-* Installation of the cc65 C compiler
+* The cc65 (6502) C compiler
 
 * Git revision control tool
 
