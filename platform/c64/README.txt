@@ -71,8 +71,9 @@ Voila! You have now built your own Contiki BBS binaries. Now, how do we get thes
 
   $ c1541 ctkbbs.d64 -write contiki-bbs.c64 contiki-bbs 
   $ c1541 ctkbbs.d64 -write bbs-setup
+  $ c1541 ctkbbs.d64 -write cs8900a.eth  
   $ c1541 ctkbbs.d64 -write lan91c96.eth
-  $ c1541 ctkbbs.d64 -write cs8900a.eth
+  $ c1541 ctkbbs.d64 -write w5100.eth
   $ c1541 ctkbbs.d64 -write login.txt
   $ c1541 ctkbbs.d64 -write logout.txt
   $ c1541 ctkbbs.d64 -write menu.txt
