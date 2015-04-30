@@ -61,7 +61,7 @@ This guide assumes your are using Linux as your development platform. Shell comm
 
 Voila! You have now built your own Contiki BBS binaries. Now, how do we get these on a D64 disk image?
 
-8.) Still in the source directory, create a D64 disk image (make sure you have set your PATH to point to the c1541 command-line program)
+8.) Still in the source directory, create a D64 disk image (make sure you have set your PATH to point to the c1541 commandline program)
 
   $ c1541 -format "contikibbs,25" ctkbbs.d64
 
