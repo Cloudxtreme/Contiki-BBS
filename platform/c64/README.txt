@@ -223,4 +223,4 @@ Contiki BBS 0.2.7
 
 login: _
 
-You are now connected to your Contiki BBS system and can log in using the username and password you entered in Step 4 of the BBS setup program. Good job!
+You are now connected to your Contiki BBS system and can log in using the username and password you entered in Step 4 of the BBS setup program. Well done, have fun!
