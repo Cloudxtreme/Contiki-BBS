@@ -75,7 +75,7 @@ Voila! You have now built your own Contiki BBS binaries. Now, how do we get thes
   $ c1541 ctkbbs.d64 -write logout.txt
   $ c1541 ctkbbs.d64 -write menu.txt
 
-Congratulations, you're done! Now you have a working D64 disk image containing Contiki BBS, ready to run in an emulator or to be written back to a real 1541 Disk in order to run on a real Commodore 64. 
+Congratulations, you're done! Now you have a working D64 disk image containing Contiki BBS, ready to run in an emulator or to be written back to a real 1541 Disk in order to run it on a real Commodore 64. 
 
 Okay, so this is how to build and prepare Contiki BBS for use on a Commodore 64. Now let's go through the setup process of Contiki BBS itself. So startup your VICE emulator and attach your ctkbbs.d64 disk image to drive 8. You are now at the Commodore 64 BASIC prompt.
 
