@@ -2,7 +2,7 @@
  * \file
  *         bbs-blist.h - show Contiki BBS message boards - header file
  * \author
- *         (c) 2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2011-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #ifndef __BBS_BOARD_H__
