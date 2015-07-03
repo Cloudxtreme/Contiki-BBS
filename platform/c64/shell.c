@@ -6,7 +6,7 @@
  *         All rights reserved.
  *
  * \author
- *         Contiki BBS shell modifications (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         Contiki BBS shell modifications (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #include "contiki.h"

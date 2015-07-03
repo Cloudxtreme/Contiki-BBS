@@ -2,7 +2,7 @@
  * \file
  *         bbs-file.c - Contiki BBS file access functions
  * \author
- *         (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #include "bbs-file.h"

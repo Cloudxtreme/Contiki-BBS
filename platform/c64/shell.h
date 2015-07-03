@@ -58,6 +58,13 @@
  *         Adam Dunkels <adam@sics.se>
  */
 
+/**
+ * \file
+ *         Modified Contiki BBS shell - header file
+ * \author
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
+ */
+
 #ifndef __SHELL_H__
 #define __SHELL_H__
 

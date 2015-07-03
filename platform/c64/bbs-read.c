@@ -2,7 +2,7 @@
  * \file
  *         bbs-read.c - read msg. from Contiki BBS message boards
  * \author
- *         (c) 2099-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2099-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 

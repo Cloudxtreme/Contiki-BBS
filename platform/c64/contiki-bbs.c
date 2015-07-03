@@ -43,7 +43,7 @@
  *         contiki-bbs.c - Contiki BBS main routine
  *
  * \author
- *         Contiki BBS modifications (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         Contiki BBS modifications (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 

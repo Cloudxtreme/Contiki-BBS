@@ -2,7 +2,7 @@
  * \file
  *         bbs-read.h - read msg. from Contiki BBS message boards - header file
  * \author
- *         (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #ifndef __BBS_READ_H__

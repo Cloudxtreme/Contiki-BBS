@@ -2,7 +2,7 @@
  * \file
  *         bbs-page.c - page SysOp from Contiki BBS
  * \author
- *         (c) 2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #include "contiki.h"

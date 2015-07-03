@@ -2,7 +2,7 @@
  * \file
  *         bbs-setup.h - main program of the Contiki BBS setup program - header file
  * \author
- *         (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #ifndef __BBS_SETUP_H__

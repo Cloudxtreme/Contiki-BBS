@@ -3,7 +3,7 @@
  *         bbs-setboard.h - select Contiki BBS message boards - header file
  *
  * \author
- *         (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 #ifndef __BBS_SETBOARD_H__

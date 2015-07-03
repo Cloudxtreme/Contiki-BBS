@@ -3,7 +3,7 @@
  *         bbs-setboard.c - select Contiki BBS message boards 
  *
  * \author
- *         (c) 2009-2011 by Niels Haedecke <n.haedecke@unitybox.de>
+ *         (c) 2009-2015 by Niels Haedecke <n.haedecke@unitybox.de>
  */
 
 
