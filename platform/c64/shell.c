@@ -571,8 +571,6 @@ PROCESS_THREAD(shell_process, ev, data)
   
     PROCESS_WAIT_EVENT();
 
-    /*PROCESS_WAIT_EVENT_UNTIL(ev == shell_event_input || ev == PROCESS_EVENT_TIMER);*/
-
     if (ev == shell_event_input)
     {
       input = data;
@@ -592,6 +590,7 @@ PROCESS_THREAD(shell_process, ev, data)
        bbs_unlock();
 
     if(bbs_status.bbs_status == 2) {
+      etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_session);
       shell_prompt(bbs_status.bbs_prompt);
     }
 
