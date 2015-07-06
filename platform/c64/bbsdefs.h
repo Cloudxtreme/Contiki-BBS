@@ -35,7 +35,7 @@
 #define BBS_STRING_BOARDINFO "-id- -------board------- -acl- -msgs-"
 #define BBS_STRING_LINEMAX "  enter message (max. 40 chars per line)"
 #define BBS_STRING_EDITHDR "---------+---------+---------+---------+" 
-#define BBS_STRING_VERSION "0.2.7alpha01"
+#define BBS_STRING_VERSION "0.2.7"
 
 typedef struct {
   unsigned short board_no;  

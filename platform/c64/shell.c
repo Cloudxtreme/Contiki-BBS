@@ -172,12 +172,10 @@ PROCESS_THREAD(timer_process, ev, data)
 { 
   PROCESS_BEGIN();
 
-  bbs_timer_set();
-
   while(1) {
      PROCESS_WAIT_EVENT();
 
-     if (ev == PROCESS_EVENT_TIMER) {
+     if (ev == PROCESS_EVENT_TIMER && etimer_expired(&bbs_session_timer)) {
 
         if (bbs_lock==1) {
           log_message("[bbs] ", "*timeout*");
@@ -188,8 +186,7 @@ PROCESS_THREAD(timer_process, ev, data)
         bbs_status.bbs_status=0;
         bbs_status.bbs_board_id=1;
         bbs_status.bbs_msg_id=1;
-        bbs_timer_set();
-        shell_quit();
+        shell_stop();
      }
   }
 
@@ -201,8 +198,6 @@ PROCESS_THREAD(bbs_login_process, ev, data)
   struct shell_input *input;
 
   PROCESS_BEGIN();
-
-  bbs_timer_set();
 
   PROCESS_PAUSE();
 
@@ -593,8 +588,6 @@ PROCESS_THREAD(shell_process, ev, data)
 
   PROCESS_BEGIN();
 
-  bbs_timer_set();
-
   /* Let the system start up before showing the prompt. */
   PROCESS_PAUSE();
   
@@ -602,6 +595,11 @@ PROCESS_THREAD(shell_process, ev, data)
 
     if(bbs_status.bbs_status == 2) {
       shell_prompt(bbs_status.bbs_prompt);
+    }
+
+    if (etimer_expired(&bbs_session_timer)) {
+
+       shell_prompt("TIMER EXPIRED");
     }
     
     PROCESS_WAIT_EVENT_UNTIL(ev == shell_event_input);
@@ -763,7 +761,16 @@ shell_start(void)
 void
 shell_stop(void)
 {
-  killall();
+   if (bbs_lock==1) {
+      log_message("[bbs] ", "*timeout*");
+   }
+
+   /* set BBS parameters */
+   bbs_lock=0;
+   bbs_status.bbs_status=0;
+   bbs_status.bbs_board_id=1;
+   bbs_status.bbs_msg_id=1;
+   killall();
 }
 /*---------------------------------------------------------------------------*/
 void
