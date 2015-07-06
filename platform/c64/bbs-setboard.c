@@ -51,7 +51,7 @@ PROCESS_THREAD(bbs_setboard_process, ev, data)
   file.ucDeviceNo=8;
   ssReadRELFile(&file, &board, sizeof(BBS_BOARD_REC), num);
 
-  if (atoi(input->data1) < 1 || atoi(input->data1) > board.max_boards) {
+  if (atoi(input->data1) < 0 || atoi(input->data1) > board.max_boards) {
     shell_prompt("invalid board id.\n");
   } else {
       if (bbs_user.access_req >= board.access_req) {
