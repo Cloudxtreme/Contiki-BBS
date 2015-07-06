@@ -22,8 +22,9 @@ LIST(commands);
 
 int shell_event_input;
 static struct process *front_process;
-static struct etimer bbs_session_timer;
 static unsigned long time_offset;
+static struct etimer bbs_session_timer;
+static struct etimer bbs_login_timer;
  
 BBS_STATUS_REC bbs_status;
 BBS_USER_REC bbs_user;
@@ -129,40 +130,15 @@ void bbs_splash(unsigned short mode)
     shell_output_str(&bbs_version_command,"",BBS_COPYRIGHT_STRING);
 }
 /*---------------------------------------------------------------------------*/
-void bbs_timer_set(void) 
-{
-  if(bbs_status.bbs_status==2) {
-    /*etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_session);*/
-    etimer_set(&bbs_session_timer, CLOCK_SECOND * 60);
-  } else {
-    /*etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_login);*/
-    etimer_set(&bbs_session_timer, CLOCK_SECOND * 30);
-  }  
-}
-/*---------------------------------------------------------------------------*/
-int bbs_timer_check(void)
-{
-     if (etimer_expired(&bbs_session_timer))
-        return 1;
-     else
-        return 0;
-}
-/*---------------------------------------------------------------------------*/
 void bbs_unlock(void)
 {
-     if (etimer_expired(&bbs_session_timer)) {
+  log_message("[bbs] ", "*session timeout*");
 
-        if (bbs_lock==1) {
-          log_message("[bbs] ", "*timeout*");
-          shell_output_str(&bbs_login_command, "Timeout reached.", "");
-        }
-
-        bbs_lock=0;
-        bbs_status.bbs_status=0;
-        bbs_status.bbs_board_id=1;
-        bbs_status.bbs_msg_id=1;
-        shell_exit();
-     }
+  bbs_lock=0;
+  bbs_status.bbs_status=0;
+  bbs_status.bbs_board_id=1;
+  bbs_status.bbs_msg_id=1;
+  shell_exit();
 }
 /*---------------------------------------------------------------------------*/
 int bbs_get_user(char *data)
@@ -197,26 +173,14 @@ PROCESS_THREAD(bbs_login_process, ev, data)
 
   PROCESS_BEGIN();
 
-  PROCESS_PAUSE();
+  etimer_set(&bbs_login_timer, CLOCK_SECOND * bbs_status.bbs_timeout_login);
 
   while(1) {
 
-    /*PROCESS_WAIT_EVENT_UNTIL(ev == shell_event_input);*/
-    PROCESS_WAIT_EVENT();
+    PROCESS_WAIT_EVENT_UNTIL(ev == shell_event_input || ev == PROCESS_EVENT_TIMER);
 
-    if (etimer_expired(&bbs_session_timer) && ev == PROCESS_EVENT_TIMER) {
-
-       if (bbs_lock==1) {
-         log_message("[bbs] ", "*timeout*");
-         shell_output_str(&bbs_login_command, "Timeout reached.", "");
-       }
-
-       bbs_lock=0;
-       bbs_status.bbs_status=0;
-       bbs_status.bbs_board_id=1;
-       bbs_status.bbs_msg_id=1;
-       shell_exit();
-    }
+    if (ev == PROCESS_EVENT_TIMER && etimer_expired(&bbs_login_timer))
+       bbs_unlock();
 
     if (ev == shell_event_input)
        input = data;
@@ -231,7 +195,6 @@ PROCESS_THREAD(bbs_login_process, ev, data)
                     shell_output_str(&bbs_login_command, "login failed.", "");
                     bbs_status.bbs_status=0;
                     bbs_lock=0;
-                    bbs_timer_set();
                     shell_exit();
                  }
                  break;
@@ -240,17 +203,14 @@ PROCESS_THREAD(bbs_login_process, ev, data)
       case 1: {
                  if(! strcmp(input->data1, bbs_user.user_pwd)) {
                     log_message("[bbs] *login* ", bbs_user.user_name);  
-                    /*shell_output_str(NULL, "Type '?' and return for help", "");*/
                     bbs_banner(BBS_BANNER_MENU);
                     shell_prompt(bbs_status.bbs_prompt);
                     bbs_status.bbs_status=2;
-                    bbs_timer_set();
                     front_process=&shell_process;
                  } else {
-                    shell_output_str(&bbs_login_command, "login: *failed*", "");
+                    shell_output_str(&bbs_login_command, "login failed.", "");
                     bbs_status.bbs_status=0;
                     bbs_lock=0;
-                    bbs_timer_set();
                     shell_exit();
                  }
                  break;
@@ -605,34 +565,14 @@ PROCESS_THREAD(shell_process, ev, data)
   /* Let the system start up before showing the prompt. */
   PROCESS_PAUSE();
   
-  while(1) {
+  etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_session);
 
+  while(1) {
+  
     PROCESS_WAIT_EVENT();
 
-    /*if (bbs_timer_check())
-       bbs_unlock();*/
+    /*PROCESS_WAIT_EVENT_UNTIL(ev == shell_event_input || ev == PROCESS_EVENT_TIMER);*/
 
-    if(bbs_status.bbs_status == 2) {
-      shell_prompt(bbs_status.bbs_prompt);
-    }
-
-    /*PROCESS_WAIT_EVENT_UNTIL(ev == PROCESS_EVENT_TIMER);*/
-    if (etimer_expired(&bbs_session_timer) && ev == PROCESS_EVENT_TIMER) {
-       shell_output_str(&bbs_login_command, "Timeout reached.", "");
-
-       if (bbs_lock==1) {
-         log_message("[bbs] ", "*timeout*");
-         shell_output_str(&bbs_login_command, "Timeout reached.", "");
-       }
-
-       bbs_lock=0;
-       bbs_status.bbs_status=0;
-       bbs_status.bbs_board_id=1;
-       bbs_status.bbs_msg_id=1;
-       shell_exit();
-    }
-
-    /*PROCESS_WAIT_EVENT_UNTIL(ev == shell_event_input);*/
     if (ev == shell_event_input)
     {
       input = data;
@@ -647,6 +587,14 @@ PROCESS_THREAD(shell_process, ev, data)
       }
       front_process = &shell_process;
     }
+
+    if (ev == PROCESS_EVENT_TIMER && etimer_expired(&bbs_session_timer))
+       bbs_unlock();
+
+    if(bbs_status.bbs_status == 2) {
+      shell_prompt(bbs_status.bbs_prompt);
+    }
+
   }
   
   PROCESS_END();
@@ -713,7 +661,6 @@ shell_init(void)
 
   shell_event_input = process_alloc_event();
   
-  /*process_start(&timer_process, NULL);*/
   process_start(&bbs_login_process, NULL);
   process_start(&shell_process, NULL);
   process_start(&shell_server_process, NULL);
@@ -770,7 +717,6 @@ shell_start(void)
   /* set BBS parameters */
   bbs_status.bbs_board_id=1;
   bbs_status.bbs_msg_id=1;
-  bbs_timer_set();
 
   if(bbs_lock == 1) {
     shell_exit(); 
@@ -805,7 +751,6 @@ shell_stop(void)
 void
 shell_quit(void)
 {
-  /*process_exit(&timer_process);*/
   process_exit(&bbs_login_process);
   process_exit(&shell_process);
   process_exit(&shell_server_process);
