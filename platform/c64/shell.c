@@ -266,7 +266,11 @@ PROCESS_THREAD(bbs_timer_process, ev, data)
 
         sprintf(szBuff, "session timeout.");
         shell_output_str(NULL, szBuff, "");
-        etimer_reset(&bbs_session_timer);
+        if (bbs_status.bbs_status==2)
+           etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_session);
+        else
+           etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_login);
+        /*etimer_reset(&bbs_session_timer);*/
      } else {
        if (ev == shell_event_input) 
          if (bbs_status.bbs_status==2)
