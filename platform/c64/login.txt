@@ -4,7 +4,7 @@ i         w e l c o m e   t o :        i
 i                                      i
 i           >> contiki bbs <<          i
 i                                      i
-i         v 0.2.7 (c) 2009-2015        i
+i       v 0.2.7.1 (c) 2009-2015        i
 i                  by                  i
 i              n. haedecke             i
 i                                      i

@@ -96,7 +96,7 @@ Contiki BBS configuration
 
 The main menu will appear
    
-     *** Contiki BBS 0.2.7 setup ***
+     *** Contiki BBS 0.2.7.1 setup ***
 
      1...BBS base setup
      2...BBS board setup
@@ -215,13 +215,13 @@ i         w e l c o m e   t o :        i
 i                                      i
 i           >> contiki bbs <<          i
 i                                      i
-i         v 0.2.7 (c) 2009-2013        i
+i       v 0.2.7.1 (c) 2009-2013        i
 i                  by                  i
 i              n. haedecke             i
 i                                      i
 +--------------------------------------+
 
-Contiki BBS 0.2.7
+Contiki BBS 0.2.7.1
 
 login: _
 

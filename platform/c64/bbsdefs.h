@@ -8,7 +8,7 @@
 #ifndef __BBSDEFS_H_
 #define __BBSDEFS_H_
 
-#define BBS_COPYRIGHT_STRING "\n\r            Contiki BBS 0.2.7 \n\r     (c) 2009-2015 by N. Haedecke\n\r           based on Contiki OS,\n\r     (c) 2003-2013 by Adam Dunkels\n\r"
+#define BBS_COPYRIGHT_STRING "\n\r          Contiki BBS 0.2.7.1 \n\r     (c) 2009-2015 by N. Haedecke\n\r           based on Contiki OS,\n\r     (c) 2003-2013 by Adam Dunkels\n\r"
 
 #define BBS_LOCKMODE_OFF        0
 #define BBS_LOCKMODE_ON         1
