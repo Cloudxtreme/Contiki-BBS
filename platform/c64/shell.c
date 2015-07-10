@@ -27,7 +27,7 @@ static unsigned long time_offset;
  
 BBS_STATUS_REC bbs_status;
 BBS_USER_REC bbs_user;
-unsigned short bbs_lock=0;
+unsigned short bbs_locked=0;
 
 /*---------------------------------------------------------------------------*/
 PROCESS(shell_process, "Shell");
@@ -130,14 +130,22 @@ void bbs_splash(unsigned short mode)
     shell_output_str(&bbs_version_command,"",BBS_COPYRIGHT_STRING);
 }
 /*---------------------------------------------------------------------------*/
+void bbs_lock(void)
+{
+  bbs_status.bbs_board_id=1;
+  bbs_status.bbs_msg_id=1;
+  process_start(&bbs_timer_process, NULL);
+}
+/*---------------------------------------------------------------------------*/
 void bbs_unlock(void)
 {
   log_message("[bbs] ", "*session timeout*");
 
-  bbs_lock=0;
+  bbs_locked=0;
   bbs_status.bbs_status=0;
   bbs_status.bbs_board_id=1;
   bbs_status.bbs_msg_id=1;
+  process_exit(&bbs_timer_process);
   shell_exit();
 }
 /*---------------------------------------------------------------------------*/
@@ -191,25 +199,23 @@ PROCESS_THREAD(bbs_login_process, ev, data)
                        bbs_status.bbs_status=1;
                     } else {
                        shell_output_str(&bbs_login_command, "login failed.", "");
-                       bbs_status.bbs_status=0;
-                       bbs_lock=0;
-                       shell_exit();
+                       bbs_unlock();
                     }
                     break;
          }
 
          case 1: {
                     if(! strcmp(input->data1, bbs_user.user_pwd)) {
+                       process_exit(&bbs_timer_process);
+                       bbs_status.bbs_status=2;
                        log_message("[bbs] *login* ", bbs_user.user_name);  
                        bbs_banner(BBS_BANNER_MENU);
                        shell_prompt(bbs_status.bbs_prompt);
-                       bbs_status.bbs_status=2;
+                       process_start(&bbs_timer_process, NULL);
                        front_process=&shell_process;
                     } else {
                        shell_output_str(&bbs_login_command, "login failed.", "");
-                       bbs_status.bbs_status=0;
-                       bbs_lock=0;
-                       shell_exit();
+                       bbs_unlock();
                     }
                     break;
          }
@@ -245,7 +251,7 @@ killall(void)
 PROCESS_THREAD(bbs_timer_process, ev, data)
 {
   static struct etimer bbs_session_timer;
-  char szBuff[40];
+  char szBuff[20];
 
   PROCESS_BEGIN();
 
@@ -270,7 +276,6 @@ PROCESS_THREAD(bbs_timer_process, ev, data)
            etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_session);
         else
            etimer_set(&bbs_session_timer, CLOCK_SECOND * bbs_status.bbs_timeout_login);
-        /*etimer_reset(&bbs_session_timer);*/
      } else {
        if (ev == shell_event_input) 
          if (bbs_status.bbs_status==2)
@@ -354,7 +359,7 @@ PROCESS_THREAD(shell_exit_process, ev, data)
 
   log_message("[bbs] *logut* ", bbs_user.user_name);  
   bbs_status.bbs_status=0;
-  bbs_lock=0;
+  bbs_locked=0;
   shell_exit();
 
   PROCESS_END();
@@ -704,7 +709,6 @@ shell_init(void)
   shell_event_input = process_alloc_event();
   
   process_start(&bbs_login_process, NULL);
-  process_start(&bbs_timer_process, NULL);
   process_start(&shell_process, NULL);
   process_start(&shell_server_process, NULL);
 
@@ -758,14 +762,16 @@ void
 shell_start(void)
 {
   /* set BBS parameters */
-  bbs_status.bbs_board_id=1;
+  /*bbs_status.bbs_board_id=1;
   bbs_status.bbs_msg_id=1;
+  process_start(&bbs_timer_process, NULL);*/
+  bbs_lock();
 
-  if(bbs_lock == 1) {
+  if(bbs_locked == 1) {
     shell_exit(); 
     log_message("[bbs] *busy*","");
   } else {
-    bbs_lock=1;
+    bbs_locked=1;
     bbs_banner(BBS_BANNER_LOGIN);
     shell_output_str(NULL, "\n\rContiki BBS " , BBS_STRING_VERSION);
 
@@ -779,12 +785,12 @@ shell_start(void)
 void
 shell_stop(void)
 {
-   if (bbs_lock==1) {
+   if (bbs_locked==1) {
       log_message("[bbs] ", "*timeout*");
    }
 
    /* set BBS parameters */
-   bbs_lock=0;
+   bbs_locked=0;
    bbs_status.bbs_status=0;
    bbs_status.bbs_board_id=1;
    bbs_status.bbs_msg_id=1;
