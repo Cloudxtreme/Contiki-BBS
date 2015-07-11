@@ -71,7 +71,7 @@ Voila! You have now built your own Contiki BBS binaries. Now, how do we get thes
 
   $ c1541 -format "contikibbs,27" ctkbbs.d64
 
-9.) Write the neccessary files to your new D64 disk image. Depending on what ethernet hardware you are using, you may skip writing *.eth drivers to the image that you don't need in order to save disk space.
+9.) Write the neccessary files to your new D64 disk image. Depending on what ethernet hardware you are using, you may skip writing *.eth drivers to the image that you don't need in order to save disk space. TFE and RRnet devices require the cs8900a.eth driver to be present.
 
   $ c1541 ctkbbs.d64 -write contiki-bbs.c64 contiki-bbs 
   $ c1541 ctkbbs.d64 -write bbs-setup
