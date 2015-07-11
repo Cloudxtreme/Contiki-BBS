@@ -6,7 +6,9 @@ Preamble:
 ---------
 Contiki BBS is a tiny, little and text based bulletin board system (BBS) for the Commodore 64 homecomputer and a compatible ethernet cartridge (e.g. TFE, RRnet, 64NIC+). It can be accessed through a standard telnet connection and currently provides basic BBS functionality (select from multiple boards, post/read messages, page sysop).
 
-This guide is intended to be used as a quick startup guide. It will cover the compilation and installation of Contiki BBS from source on a Linux system. This guide (c) 2015 by Niels Haedecke. If you just want to run the software without compiling it (e.g. you have downloaded the .d64 disk image), skip to section 10.) of this document.
+This guide is intended to be used as a quick startup guide. It will cover the compilation and installation of Contiki BBS from source on a Linux system. This guide (c) 2015 by Niels Haedecke. 
+
+If you just want to run the software without compiling it (e.g. you have downloaded the .d64 disk image), skip to section 10.) of this document.
 
 
 Prerequisites:
@@ -96,7 +98,7 @@ Contiki BBS configuration
 
 The main menu will appear
    
-     *** Contiki BBS 0.2.7 setup ***
+     *** Contiki BBS 0.2.7.1 setup ***
 
      1...BBS base setup
      2...BBS board setup
@@ -215,13 +217,13 @@ i         w e l c o m e   t o :        i
 i                                      i
 i           >> contiki bbs <<          i
 i                                      i
-i         v 0.2.7 (c) 2009-2013        i
+i       v 0.2.7.1 (c) 2009-2013        i
 i                  by                  i
 i              n. haedecke             i
 i                                      i
 +--------------------------------------+
 
-Contiki BBS 0.2.7
+Contiki BBS 0.2.7.1
 
 login: _
 
