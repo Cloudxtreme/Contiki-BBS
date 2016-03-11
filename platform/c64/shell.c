@@ -357,7 +357,7 @@ PROCESS_THREAD(shell_exit_process, ev, data)
 
   bbs_banner(BBS_BANNER_LOGOUT);
 
-  log_message("[bbs] *logut* ", bbs_user.user_name);  
+  log_message("[bbs] *logout* ", bbs_user.user_name);  
   bbs_status.bbs_status=0;
   bbs_locked=0;
   shell_exit();
